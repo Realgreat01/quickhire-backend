@@ -7,7 +7,7 @@ require('./controller/docs/privacy.js');
 // MIDDLEWARES
 const app = express();
 const allowedOrigins = [
-  'http://quickhire.vercel.app',
+  'https://quickhire.vercel.app',
   'https://vercel.app',
   'http://localhost:3000',
   'http://localhost:5173',
