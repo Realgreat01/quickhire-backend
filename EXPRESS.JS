@@ -6,6 +6,32 @@ require('dotenv').config();
 require('./controller/docs/privacy.js');
 // MIDDLEWARES
 const app = express();
+const allowedOrigins = [
+  'http://quickhire.vercel.app',
+  'https://vercel.app',
+  'http://localhost:3000',
+  'http://localhost:5173',
+  '*',
+];
+
+// CORS options
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  // allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  // optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+};
+
+// Enable CORS with the above options
+app.use(cors(corsOptions));
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
