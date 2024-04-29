@@ -20,13 +20,14 @@ const JobSchema = new Schema({
   },
   job_type: {
     type: String,
-    enum: ['Fulltime', 'Part-Time', 'Contract', 'Internship', 'Voluntary'],
+    enum: ['Full-Time', 'Part-Time', 'Contract', 'Internship', 'Voluntary'],
+    default: 'part-time',
     required: [true, 'job type is required'],
   },
   posted_on: {
     type: Date,
+    immutable: true,
     default: () => Date.now(),
-    validate: [isDate, 'Enter a valid date'],
   },
   application_ends: {
     type: Date,
@@ -36,14 +37,13 @@ const JobSchema = new Schema({
   job_duration: {
     type: Date || String,
     required: [true, 'job duration is required'],
-    validate: [isDate, 'Enter a valid date'],
   },
   salary: {
     type: String || Number,
     required: [true, 'job salary is required'],
   },
   required_skills: {
-    type: [String],
+    type: [Object],
     required: [true, 'job skills requirement must be added'],
   },
 });

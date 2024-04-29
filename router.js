@@ -84,7 +84,7 @@ app.use(
 );
 
 app.use(/*  #swagger.tags = ['Public']*/ '/public/company', companyPublicRoute);
-app.use(/*  #swagger.tags = ['Public']*/ '/job', jobRoute);
+app.use(/*  #swagger.tags = ['Public']*/ '/job', authenticateUser, jobRoute);
 app.use(/*  #swagger.tags = ['Public']*/ '/users', UserPublicRoute);
 app.use(/*  #swagger.tags = ['Public']*/ '/test', testRoute);
 app.use(

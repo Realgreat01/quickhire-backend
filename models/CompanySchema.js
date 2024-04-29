@@ -49,6 +49,7 @@ const CompanySchema = new Schema({
   },
   company_category: {
     type: String,
+    default: 'IT Company',
     required: [true, 'company category is required'],
   },
   company_employee_count: {
